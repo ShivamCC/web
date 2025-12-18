@@ -1,0 +1,95 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+
+    {
+      "name": "Services",
+      "url": "/services/",
+      "hasMegamenu": true,
+      "clickable":true,
+      "children": [
+        {
+          "name": "Growth",
+          "children": [
+            { "name": "Menu Optimization", "url": "/feature" },
+            { "name": "Growth Strategy", "url": "/feature" },
+            { "name": "Account & Platform management", "url": "/feature" }
+          ]
+        },
+        {
+          "name": "Operations",
+          "children": [
+            { "name": "Performance Marketing & Campaigns", "url": "/feature" },
+            { "name": "Data Analytics & Revenue Forecasting", "url": "/feature" },
+            { "name": "Quality & Operational Excellence", "url": "/feature" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "About Us",
+      "url": "/about/",
+      "hasChildren": true,
+      "clickable":true,
+      "children": [
+        { "name": "Team", "url": "/team/" },
+        { "name": "Careers", "url": "/careers/" }
+      ]
+    },
+
+    {
+      "name": "Testimonials",
+      "url": "/testimonials/"
+    },
+
+    {
+      "name": "Contact",
+      "url": "/contact/"
+    }
+  ],
+
+  "footer": [
+    { "name": "Privacy Policy", "url": "/privacy-policy/" },
+    { "name": "Terms & Conditions", "url": "/terms-conditions/" }
+  ],
+
+  "company": [
+    { "name": "About", "url": "/about/" },
+    { "name": "Features", "url": "/feature/" },
+    { "name": "Contact", "url": "/contact/" }
+  ],
+
+  "resources": [
+    { "name": "Terms & Conditions", "url": "/blog/" },
+    { "name": "Privacy Policy", "url": "/blog/post-1/" },
+    { "name": "Cookie Policy", "url": "/changelog/" }
+  ],
+
+ "contact": {
+  "title": "Contact",
+  "items": [
+    {
+      "icon": "/images/icons/svg/phone.svg",
+      "title": "Give us a call",
+      "value": "+91 98765 43210",
+      "href": "tel:+919876543210"
+    },
+    {
+      "icon": "/images/icons/svg/email.svg",
+      "title": "Email",
+      "value": "admin@culinarycompass.in",
+      "href": "mailto:admin@culinarycompass.in"
+    }
+  ],
+  "address": {
+    "icon": "/images/icons/svg/email.svg",
+    "title": "Office Address",
+    "value": "3rd Floor, ABC Tower,\nMG Road, Andheri East,\nMumbai – 400069"
+  }
+}
+
+}
