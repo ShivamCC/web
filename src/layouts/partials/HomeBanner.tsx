@@ -4,27 +4,12 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
 const HomeBanner = () => {
-  const { title, note, description, buttons, list, image } = getListPage(
+  const { title, note, description, buttons, image } = getListPage(
     "sections/home-banner.md",
   ).frontmatter;
 
   return (
-    <section className="relative overflow-hidden pb-0 pt-20 home-banner">
-      {/* 🌫️ NOISE */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hero-noise opacity-40"
-      />
-
-      {/* 🌈 BASE GRADIENT */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0 -z-10
-          bg-gradient-to-tr from-primary/20 via-secondary/20 to-primary/20
-        "
-      />
-
+    <section className="relative overflow-hidden pb-0 pt-16">
       <div className="container">
         <div className="row justify-center">
           {/* ================= TEXT ================= */}
@@ -34,10 +19,10 @@ const HomeBanner = () => {
                 data-aos="fade-up-sm"
                 className="border-animation mx-auto mb-4 w-fit rounded-full p-px"
               >
-                <div className="border-animation-inner flex gap-2 rounded-full border border-white/15 px-3 py-1.5 backdrop-blur-md">
+                <div className="border-animation-inner flex gap-2 rounded-full border border-white/15 px-3 py-1.5">
                   <ImageFallback
-                    width={24}
-                    height={24}
+                    width={30}
+                    height={28}
                     src="/images/icons/svg/award.svg"
                     alt="note"
                   />
@@ -49,24 +34,18 @@ const HomeBanner = () => {
               </div>
             )}
 
-            {/* 🔥 TITLE — NO AOS, NO FLASH */}
             {title && (
               <h1
-                suppressHydrationWarning
-                className="
-                  hero-title
-                  mb-4 text-h2 lg:text-h1 font-semibold tracking-tight
-                  bg-gradient-to-r from-white via-primary to-white
-                  bg-clip-text text-transparent
-                "
+                className="has-gradient mb-4 text-h2 lg:text-h1"
+                data-aos="fade-up-sm"
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
 
             {description && (
               <p
+                className="mb-8 text-xl/[inherit] text-light"
                 data-aos="fade-up-sm"
-                className="mb-10 text-xl/[inherit] text-light opacity-90"
                 dangerouslySetInnerHTML={markdownify(description)}
               />
             )}
@@ -78,11 +57,7 @@ const HomeBanner = () => {
                     { label, link }: { label: string; link: string },
                     index: number,
                   ) => (
-                    <li
-                      key={index}
-                      data-aos="fade-up-sm"
-                      data-aos-delay={100 + index * 50}
-                    >
+                    <li key={index} data-aos="fade-up-sm">
                       <AnimatedAnchor
                         className={
                           index === 0
@@ -90,8 +65,6 @@ const HomeBanner = () => {
                             : "btn-outline-transparent"
                         }
                         link={link}
-                        target={link.startsWith("http") ? "_blank" : "_self"}
-                        rel="noopener"
                         label={label}
                         hideIcon={index !== 0}
                       />
@@ -100,67 +73,30 @@ const HomeBanner = () => {
                 )}
               </ul>
             )}
-
-            {list && (
-              <ul
-                data-aos="fade-up-sm"
-                data-aos-delay="200"
-                className="mt-6 flex flex-wrap justify-center gap-4"
-              >
-                {list.map((item: string, index: number) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-4 text-sm opacity-70"
-                  >
-                    {index !== 0 && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
-                    )}
-                    <span dangerouslySetInnerHTML={markdownify(item)} />
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
 
-          {/* ================= IMAGE ================= */}
+          {/* ================= DIRECTIONAL TILT IMAGE ================= */}
           {image && (
             <div
-              className="col-12 pt-12 lg:pt-24"
-              data-aos="fade-up-sm"
-              data-aos-delay="400"
+              className="col-12 pt-8 lg:pt-16"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
-              <div className="max-h-[825px]">
-                <div className="group relative mx-auto max-w-[900px] perspective-[1200px]">
-                  <span
-                    aria-hidden
-                    className="
-                      absolute -inset-12 -z-10
-                      rounded-full
-                      bg-gradient-to-tr from-primary/30 via-secondary/30 to-primary/30
-                      blur-[140px]
-                    "
-                  />
+              <div className="mx-auto max-w-[900px] perspective-1000">
+                <div className="tilt-wrapper">
+                  {/* invisible hover zones */}
+                  <span className="tilt-zone top" />
+                  <span className="tilt-zone bottom" />
+                  <span className="tilt-zone left" />
+                  <span className="tilt-zone right" />
 
-                  <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
-
-                  <div
-                    className="
-                      relative
-                      animate-float-slow
-                      transition-all duration-700 ease-out
-                      will-change-transform
-                      group-hover:-translate-y-10
-                      group-hover:scale-[1.05]
-                      group-hover:rotate-x-6
-                      group-hover:-rotate-y-6
-                      group-hover:shadow-[0_90px_160px_-50px_rgba(0,0,0,0.85)]
-                    "
-                  >
+                  {/* actual image */}
+                  <div className="tilt-card floating-card rounded-2xl">
                     <ImageFallback
                       src={image.src}
                       alt={image.alt}
-                      width={700}
-                      height={600}
+                      width={800}
+                      height={700}
                       className="mx-auto rounded-2xl"
                     />
                   </div>
@@ -171,26 +107,16 @@ const HomeBanner = () => {
         </div>
       </div>
 
-      {/* 🔒 HARD KILL FLASH */}
-      <style>{`
-        .home-banner [data-aos] {
-          opacity: 1 !important;
-          transform: none !important;
-        }
+      {/* ================= BACKGROUND GLOW ================= */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[15%] top-1/2 z-10
+                   h-[358px] w-[516px] rotate-[-19deg] rounded-full
+                   bg-gradient-to-tr from-secondary/40 via-secondary to-primary
+                   opacity-30 blur-[100px]"
+      />
+      
 
-        .hero-title {
-          opacity: 1 !important;
-          transform: none !important;
-          animation: none !important;
-        }
-
-        /* shimmer AFTER load only */
-        @media (prefers-reduced-motion: no-preference) {
-          .hero-title {
-            animation: shimmer 6s linear infinite;
-          }
-        }
-      `}</style>
     </section>
   );
 };

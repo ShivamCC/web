@@ -60,7 +60,7 @@ const Header = () => {
       >
         <nav className="navbar container relative z-10 h-20">
           {/* logo  */}
-          <div className="">
+          <div className="flex items-center h-15">
             <Logo />
 
           </div>

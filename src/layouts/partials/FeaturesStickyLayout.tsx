@@ -10,7 +10,26 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
 
   return (
     <>
-      <section className="section py-28 lg:py-36">
+      {/* ================= HEADING ================= */}
+      <div className="container">
+        <h1
+          className="has-gradient mb-3 text-center text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight"
+          style={{ fontFamily: "Figtree, sans-serif" }}
+        >
+          What We Offer
+        </h1>
+
+        {/* DIVIDER */}
+        <div className="mx-auto mb-4 h-[2px] w-16 rounded-full bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+
+        <p className="mx-auto mb-6 max-w-3xl text-center text-base md:text-lg lg:text-xl text-white/70 leading-relaxed">
+          Powerful solutions designed to help you grow, scale, and stand out in
+          the digital world.
+        </p>
+      </div>
+
+      {/* ================= CARDS ================= */}
+      <section className="section pt-6 pb-20 lg:pt-10 lg:pb-28">
         <div className="container relative">
           {features?.map((item: Feature["frontmatter"], mindex: number) => {
             const { title, description, list, images, button } = item;
@@ -27,19 +46,19 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
                   shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)]
                   ${
                     !sticky
-                      ? "mb-40"
-                      : `max-lg:mb-44 lg:sticky ${
+                      ? "mb-32"
+                      : `max-lg:mb-36 lg:sticky ${
                           mindex === 1 ? "lg:top-[160px]" : "lg:top-[120px]"
                         }`
                   }`}
                 >
                   <div className="row">
                     {/* ================= LEFT ================= */}
-                    <div className="lg:col-6">
-                      <div className="min-h-full py-10 px-6 md:py-16 md:px-12 lg:py-36 lg:px-20">
+                    <div className="lg:col-5">
+                      <div className="min-h-full py-10 px-6 md:py-14 md:px-12 lg:py-28 lg:px-20">
                         {title && (
                           <h2
-                            className="has-gradient mb-6 text-4xl md:text-5xl font-semibold leading-tight"
+                            className="has-gradient mb-5 text-4xl md:text-5xl font-semibold leading-tight"
                             dangerouslySetInnerHTML={markdownify(title)}
                           />
                         )}
@@ -55,7 +74,7 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
                         )}
 
                         {list && (
-                          <ul className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 lg:mt-16">
+                          <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 lg:mt-12">
                             {list.map((item, i) => (
                               <li
                                 key={i}
@@ -80,36 +99,37 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
                           <AnimatedAnchor
                             label={button.label}
                             link={button.link}
-                            className="btn-primary mt-8 md:mt-12"
+                            className="btn-primary mt-8 md:mt-10"
                           />
                         )}
                       </div>
                     </div>
 
-                    {/* ================= RIGHT (ORIGINAL IMAGES) ================= */}
-                    <div className="lg:col-6">
-                      <div className="rounded-3xl bg-body lg:pl-5">
-                        <div className="flex min-h-full items-center px-5 md:px-10">
-                          <div className="relative py-10 md:w-[60%] lg:w-auto lg:py-20">
+                    {/* ================= RIGHT (WIDER IMAGE AREA) ================= */}
+                    <div className="lg:col-7">
+                      <div className="rounded-3xl bg-body lg:pl-6">
+                        <div className="flex min-h-full items-center px-6 md:px-12">
+                          <div className="relative w-full py-14 lg:py-24">
                             {images?.map((img, index: number) => {
                               const getClass = (m: number, i: number) => {
                                 switch (m) {
                                   case 0:
                                     return i === 0
-                                      ? "w-full"
-                                      : "w-[60%] mt-6";
+                                      ? "w-[95%] mx-auto"
+                                      : "w-[70%] mx-auto mt-10";
+
                                   case 1:
                                     return i === 0
-                                      ? "w-[76%]"
-                                      : "w-[70%] ml-[24%] mt-[-12%]";
+                                      ? "w-[90%] mx-auto"
+                                      : "w-[75%] mx-auto mt-16%";
+
                                   case 2:
                                     return i === 0
-                                      ? "w-[70%] mx-auto"
-                                      : "w-[55%] ml-6 mt-[-20%]";
+                                      ? "w-[85%] mx-auto"
+                                      : "w-[65%] mx-auto mt-20";
+
                                   default:
-                                    return i === 0
-                                      ? "w-[76%]"
-                                      : "w-[70%] ml-[24%] mt-[-12%]";
+                                    return "w-[90%] mx-auto";
                                 }
                               };
 
@@ -118,25 +138,27 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
                                   key={index}
                                   src={img}
                                   alt={title}
-                                  width={500}
-                                  height={500}
-                                  className={`relative z-10 ${getClass(
-                                    mindex,
-                                    index,
-                                  )}`}
+                                  width={800}
+                                  height={600}
+                                  className={`relative z-10 rounded-2xl
+                                    shadow-[0_30px_80px_-20px_rgba(0,0,0,0.55)]
+                                    transition-transform duration-500
+                                    hover:scale-[1.03]
+                                    ${getClass(mindex, index)}
+                                  `}
                                 />
                               );
                             })}
 
-                            {/* ORIGINAL GLOW */}
+                            {/* GLOW */}
                             <div
-                              aria-hidden="true"
-                              className="pointer-events-none absolute bottom-px left-2/4 z-0
-                              h-[353px] w-[509px]
-                              -translate-x-2/4 rotate-[-19deg]
+                              aria-hidden
+                              className="pointer-events-none absolute bottom-0 left-1/2 z-0
+                              h-[420px] w-[620px]
+                              -translate-x-1/2 rotate-[-18deg]
                               rounded-full bg-gradient-to-tr
                               from-secondary/40 via-secondary via-60% to-primary
-                              opacity-60 blur-[207px]"
+                              opacity-70 blur-[240px]"
                             />
                           </div>
                         </div>
@@ -160,7 +182,7 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
       {/* ================= CONNECTOR CSS ================= */}
       <style>{`
         .connector-wrap {
-          height: 160px;
+          height: 140px;
           width: 2px;
           pointer-events: none;
           view-timeline-name: --connector;
@@ -184,28 +206,6 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
           animation-range: entry 10% cover 80%;
         }
 
-        .connector-line::before,
-        .connector-line::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          width: 10px;
-          height: 10px;
-          background: white;
-          border-radius: 999px;
-          transform: translateX(-50%) scale(0);
-          opacity: 0;
-          filter: blur(2px);
-        }
-
-        .connector-line::before {
-          top: -4px;
-        }
-
-        .connector-line::after {
-          bottom: -4px;
-        }
-
         @keyframes connect-line {
           from {
             transform: scaleY(0);
@@ -214,27 +214,6 @@ const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
           to {
             transform: scaleY(1);
             opacity: 1;
-          }
-        }
-
-        @supports (animation-timeline: view()) {
-          .connector-line::before,
-          .connector-line::after {
-            animation: glow-dot linear both;
-            animation-timeline: --connector;
-            animation-range: entry 30% cover 90%;
-          }
-        }
-
-        @keyframes glow-dot {
-          from {
-            transform: translateX(-50%) scale(0);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(-50%) scale(1);
-            opacity: 1;
-            box-shadow: 0 0 24px rgba(255,255,255,0.9);
           }
         }
       `}</style>

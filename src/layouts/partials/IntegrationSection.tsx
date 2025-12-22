@@ -1,5 +1,5 @@
 import AnimatedAnchor from "@/components/AnimatedAnchor";
-import IntegrationCard from "@/components/IntegrationCard";
+import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage, getSinglePage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
@@ -13,9 +13,7 @@ type IntegrationSectionProps = {
 
 const IntegrationSection = ({
   largeHeading,
-  hideBackground,
   fluidContainer,
-  hideHeadingOverlay,
   hideCTAButton,
 }: IntegrationSectionProps) => {
   const { title, description, button } = getListPage(
@@ -31,122 +29,173 @@ const IntegrationSection = ({
   const Container = fluidContainer ? "container-fluid" : "container";
 
   return (
-    <section className="section !overflow-visible">
+    <section className="section overflow-x-hidden">
       <div className={Container}>
-        <div
-          className={
-            !hideBackground
-              ? "overflow-visible rounded-xl border border-border bg-body pt-10 md:pt-20"
-              : ""
-          }
-        >
-          <div className="row">
-            {/* HEADER */}
-            <div className="col-12 text-center">
-              <div className="relative px-5 md:px-10">
-                {largeHeading ? (
-                  <h1
-                    className="has-gradient mb-6"
-                    dangerouslySetInnerHTML={markdownify(title)}
-                  />
-                ) : (
-                  <h2
-                    className="has-gradient mb-6"
-                    dangerouslySetInnerHTML={markdownify(title)}
-                  />
-                )}
+        <div className="row">
 
-                {description && (
-                  <p
-                    className="text-lg font-medium opacity-80"
-                    dangerouslySetInnerHTML={markdownify(description)}
-                  />
-                )}
+          {/* ================= HEADER ================= */}
+          <div className="col-12 text-center">
+            <div className="relative px-5 md:px-10">
+              {largeHeading ? (
+                <h1
+                  className="has-gradient mb-6"
+                  dangerouslySetInnerHTML={markdownify(title)}
+                />
+              ) : (
+                <h2
+                  className="has-gradient mb-6"
+                  dangerouslySetInnerHTML={markdownify(title)}
+                />
+              )}
 
-                {!hideCTAButton && button?.enable && (
-                  <AnimatedAnchor
-                    className="btn-primary mt-11"
-                    link={button.link}
-                    label={button.label}
-                  />
-                )}
+              {description && (
+                <p
+                  className="text-lg font-medium opacity-80"
+                  dangerouslySetInnerHTML={markdownify(description)}
+                />
+              )}
 
-                {!hideHeadingOverlay && (
-                  <div
-                    aria-hidden
-                    className="
-                      pointer-events-none
-                      absolute left-1/2 top-44
-                      -z-10
-                      h-80 w-[550px]
-                      -translate-x-1/2
-                      rounded-full
-                      bg-gradient-to-l
-                      from-secondary
-                      via-secondary/80
-                      to-dark/0
-                      opacity-60
-                      blur-[120px]
-                    "
-                  />
-                )}
-              </div>
+              {!hideCTAButton && button?.enable && (
+                <AnimatedAnchor
+                  className="btn-primary mt-10"
+                  link={button.link}
+                  label={button.label}
+                />
+              )}
             </div>
+          </div>
 
-            {/* MARQUEES */}
-            <div className="col-12 pt-20">
-              {/* ROW 1 */}
-              <div className="marquee-wrapper flex gap-5 overflow-visible">
-                <div className="marquee marquee-duration-60 flex shrink-0 items-center gap-5">
-                  {firstList.map((item, i) => (
-                    <IntegrationCard
+          {/* ================= MARQUEES ================= */}
+          <div className="col-12 pt-20">
+
+            {/* ================= ROW 1 ================= */}
+            <div className="relative flex overflow-visible -translate-y-2 mb-28">
+              {/* ⛔ marquee ignores hover */}
+              <div className="marquee marquee-duration-60 flex shrink-0 items-center gap-16 pointer-events-none">
+                {firstList.map((item, i) => {
+                  const label =
+                    item.frontmatter.title ||
+                    item.frontmatter.name ||
+                    "Integration";
+
+                  return (
+                    /* ✅ only card receives hover */
+                    <div
                       key={`first-${i}`}
-                      image={item.frontmatter.image}
-                      style="h-40 w-40 object-contain"
-                    />
-                  ))}
-                </div>
+                      className="group relative z-10 pointer-events-auto isolate"
+                    >
+                      {/* OUTER – no transform */}
+                      <div className="h-40 w-40">
+                        {/* INNER – hover transform only */}
+                        <div
+                          className="
+                            h-full w-full
+                            transition-transform duration-300
+                            will-change-transform
+                            transform-gpu
+                            group-hover:scale-[1.6]
+                            group-hover:-translate-y-8
+                          "
+                        >
+                          <ImageFallback
+                            src={item.frontmatter.image}
+                            alt={label}
+                            width={160}
+                            height={160}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      </div>
 
-                <div
-                  className="marquee marquee-duration-60 flex shrink-0 items-center gap-5"
-                  aria-hidden
-                >
-                  {firstList.map((item, i) => (
-                    <IntegrationCard
-                      key={`first-dup-${i}`}
-                      image={item.frontmatter.image}
-                      style="h-40 w-40 object-contain"
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* ROW 2 */}
-              <div className="marquee-wrapper mt-4 flex gap-5 overflow-visible">
-                <div className="marquee marquee-duration-60 marquee-reverse flex shrink-0 items-center gap-5">
-                  {secondList.map((item, i) => (
-                    <IntegrationCard
-                      key={`second-${i}`}
-                      image={item.frontmatter.image}
-                      style="h-36 w-36 object-contain"
-                    />
-                  ))}
-                </div>
-
-                <div
-                  className="marquee marquee-duration-60 marquee-reverse flex shrink-0 items-center gap-5"
-                  aria-hidden
-                >
-                  {secondList.map((item, i) => (
-                    <IntegrationCard
-                      key={`second-dup-${i}`}
-                      image={item.frontmatter.image}
-                      style="h-36 w-36 object-contain"
-                    />
-                  ))}
-                </div>
+                      {/* POPUP DOWN */}
+                      <div
+                        className="
+                          pointer-events-none
+                          absolute left-1/2 top-full mt-3
+                          -translate-x-1/2
+                          whitespace-nowrap
+                          rounded-lg
+                          border border-border
+                          bg-body px-5 py-2
+                          text-base font-semibold
+                          opacity-0 scale-95
+                          transition-all duration-200
+                          group-hover:opacity-100
+                          group-hover:scale-105
+                        "
+                      >
+                        {label}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
+
+            {/* ================= ROW 2 ================= */}
+            <div className="relative mt-24 flex overflow-visible -translate-y-4">
+              {/* ⛔ marquee ignores hover */}
+              <div className="marquee marquee-duration-60 marquee-reverse flex shrink-0 items-center gap-16 pointer-events-none">
+                {secondList.map((item, i) => {
+                  const label =
+                    item.frontmatter.title ||
+                    item.frontmatter.name ||
+                    "Integration";
+
+                  return (
+                    /* ✅ only card receives hover */
+                    <div
+                      key={`second-${i}`}
+                      className="group relative z-10 pointer-events-auto isolate"
+                    >
+                      {/* OUTER – no transform */}
+                      <div className="h-36 w-36">
+                        {/* INNER – hover transform only */}
+                        <div
+                          className="
+                            h-full w-full
+                            transition-transform duration-300
+                            will-change-transform
+                            transform-gpu
+                            group-hover:scale-[1.6]
+                            group-hover:-translate-y-8
+                          "
+                        >
+                          <ImageFallback
+                            src={item.frontmatter.image}
+                            alt={label}
+                            width={140}
+                            height={140}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      </div>
+
+                      {/* POPUP UP */}
+                      <div
+                        className="
+                          pointer-events-none
+                          absolute left-1/2 bottom-full mb-3
+                          -translate-x-1/2
+                          whitespace-nowrap
+                          rounded-lg
+                          border border-border
+                          bg-body px-5 py-2
+                          text-base font-semibold
+                          opacity-0 scale-95
+                          transition-all duration-200
+                          group-hover:opacity-100
+                          group-hover:scale-105
+                        "
+                      >
+                        {label}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

@@ -4,66 +4,114 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { Team } from "@/types";
 
 const TeamCard = ({ data }: { data: Team }) => {
-  const { avatar, name, designation, content, social, style } = data;
+  const {
+    avatar,
+    name,
+    designation,
+    content,
+    social,
+    style,
+  } = data || {};
 
   return (
-    <div className={` min-h-full ${(style && style) || ""}`}>
-      <div className="h-20 w-20 overflow-hidden rounded-full">
-        <ImageFallback
-          src={avatar}
-          className="rounded-full"
-          alt={name || "avatar of team member"}
-          width={80}
-          height={80}
-        />
-      </div>
+    <div
+      className={`
+        group relative flex h-full flex-col
+        rounded-2xl border border-white/10
+        bg-white/5 p-6 text-center
+        transition-all duration-300
+        hover:shadow-xl hover:shadow-black/40
+
+        ${style || ""}
+      `}
+    >
+      {/* ================= AVATAR ================= */}
+      {avatar && (
+        <div className="mx-auto h-24 w-24 overflow-hidden rounded-full ring-2 ring-white/10 transition group-hover:ring-white/30">
+          <ImageFallback
+            src={avatar}
+            alt={name || "team member"}
+            width={96}
+            height={96}
+            className="h-full w-full rounded-full object-cover"
+          />
+        </div>
+      )}
+
+      {/* ================= NAME ================= */}
       {name && (
         <h3
-          className="tracking-none mt-4 text-base md:text-lg"
+          className="mt-5 text-lg font-semibold tracking-tight"
           dangerouslySetInnerHTML={markdownify(name)}
         />
       )}
+
+      {/* ================= DESIGNATION ================= */}
       {designation && (
         <p
-          className="opacity-70"
+          className="mt-1 text-sm font-medium text-white/70"
           dangerouslySetInnerHTML={markdownify(designation)}
         />
       )}
+
+      {/* ================= BIO / CONTENT ================= */}
       {content && (
         <p
-          className="mt-4 opacity-80"
+          className="mt-4 text-sm leading-relaxed text-white/80"
           dangerouslySetInnerHTML={markdownify(content)}
         />
       )}
 
-      {social && (
-        <ul className="mt-6 flex gap-3">
-          {social.map((social: { name: string; icon: string; url: string }) => (
-            <li key={social.name}>
-              <a
-                aria-label={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-              >
-                <span className="sr-only">{social.name}</span>
-                {social.icon.startsWith("/images/") ? (
-                  <div className="relative flex h-12 w-12 items-center justify-center after:absolute after:inset-0 after:rounded-md after:bg-gradient-to-b after:from-white/10 after:to-slate-800/25 after:transition-all after:duration-300 after:content-[''] hover:after:scale-y-[-1]">
+      {/* ================= SOCIAL (BOTTOM) ================= */}
+      {Array.isArray(social) && social.length > 0 && (
+        <div className="mt-auto pt-6">
+          <div className="flex justify-center gap-3">
+            {social.map(
+              (item: { name: string; icon: string; url: string }) => (
+                <a
+                  key={item.name}
+                  href={item.url}
+                  aria-label={item.name}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="
+                    group/social flex h-10 w-10 items-center justify-center
+                    rounded-full border border-white/10
+                    bg-white/5
+                    transition-all duration-300
+                    hover:scale-110 hover:bg-[#0A66C2]
+                  "
+                >
+                  <span className="sr-only">{item.name}</span>
+
+                  {item.icon.startsWith("/images/") ? (
                     <ImageFallback
-                      className="h-4 w-4 object-cover"
-                      src={social.icon}
-                      alt={`icon related to ${social.name}`}
+                      src={item.icon}
+                      alt={item.name}
                       width={16}
                       height={16}
+                      className="
+                        h-4 w-4 object-contain
+                        transition-all duration-300
+                        group-hover/social:brightness-0
+                        group-hover/social:invert
+                      "
                     />
-                  </div>
-                ) : (
-                  <DynamicIcon className="inline-block" icon={social.icon} />
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
+                  ) : (
+                    <DynamicIcon
+                      icon={item.icon}
+                      className="
+                        h-4 w-4
+                        transition-colors duration-300
+                        group-hover/social:text-white
+                      "
+                    />
+                  )}
+                </a>
+              ),
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

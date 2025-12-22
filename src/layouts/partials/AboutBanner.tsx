@@ -22,11 +22,15 @@ const AboutBanner = () => {
     <section className="section overflow-hidden">
       <div className="container">
         <div className="row">
-          {/* ================= TEXT ================= */}
-          {/* ❌ AOS REMOVED FROM TITLE (NO FLASH) */}
-          <div className="lg:col-6">
+
+          {/* ================= TITLE + DESCRIPTION ================= */}
+          <div className="col-12 text-center max-w-4xl mx-auto">
+
+            {/* TITLE → LEFT TO CENTER */}
             {title && (
               <h1
+                data-aos="fade-right"
+                data-aos-duration="1200"
                 className="
                   mb-6 font-semibold tracking-tight
                   text-[clamp(2.6rem,4.4vw,3.6rem)]
@@ -34,27 +38,57 @@ const AboutBanner = () => {
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
-          </div>
 
-          {/* DESCRIPTION (animation OK) */}
-          <div
-            className="
-              lg:col-6 lg:pl-20
-              text-lg leading-relaxed text-white/70
-            "
-            data-aos="fade-up-sm"
-            data-aos-delay="150"
-          >
+            {/* DESCRIPTION → RIGHT TO CENTER */}
             {description && (
               <div
+                data-aos="fade-left"
+                data-aos-delay="150"
+                data-aos-duration="1200"
+                className="text-lg leading-relaxed text-white/70"
                 dangerouslySetInnerHTML={markdownify(description, true)}
               />
             )}
+
           </div>
+
+          {/* ================= IMAGES HEADING ================= */}
+          {images.length > 0 && (
+            <div className="col-12 pt-28 text-center">
+              <h2
+                className="
+                  mb-5 font-semibold tracking-tight
+                  text-[clamp(1.8rem,3vw,2.4rem)]
+                "
+                data-aos="fade-up-sm"
+              >
+                Glimpses of our Office
+              </h2>
+
+              {/* DIVIDER */}
+              <div
+                className="
+                  mx-auto mb-6 h-px w-24
+                  bg-gradient-to-r
+                  from-transparent via-white/40 to-transparent
+                "
+                data-aos="fade-up-sm"
+                data-aos-delay="100"
+              />
+
+              <p
+                className="mx-auto max-w-2xl text-white/60"
+                data-aos="fade-up-sm"
+                data-aos-delay="180"
+              >
+                A peek into the space where ideas turn into execution.
+              </p>
+            </div>
+          )}
 
           {/* ================= IMAGE PANELS ================= */}
           {images.length > 0 && (
-            <div className="col-12 pt-36 grid gap-14 md:grid-cols-3">
+            <div className="col-12 pt-16 grid gap-14 md:grid-cols-3">
               {images.map((img, index) => (
                 <div
                   key={index}
@@ -162,6 +196,7 @@ const AboutBanner = () => {
               ))}
             </div>
           )}
+
         </div>
       </div>
 

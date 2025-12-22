@@ -8,13 +8,13 @@ description: Gain invaluable predictive analytics and actionable insights.
 
 jobs:
   - role: Business Analyst
-    summary: Build modern, high-performance UIs using React and Tailwind.
+    summary: Responsible for transforming multi-source food-tech data into actionable insights through dashboards, analysis, and automated reporting to drive client growth and operational efficiency.
     location: Sakinaka/Mumbai 
     jd: /jd/Business_Analyst.pdf
     apply:  https://docs.google.com/forms/u/1/d/e/1FAIpQLScG_82ZYK0UNkoUmRi0391lQAY8TWQM0CIourVXTRZAAMxn8Q/viewform?authuser=1
 
   - role: Key Account Manager
-    summary: Design scalable APIs using FastAPI(Python) and PostgreSQL(SQL).
+    summary: Owns partner brand relationships and drives growth across Swiggy and Zomato by leveraging data-driven strategies, cross-functional coordination, and performance insights.
     location: Sakinaka/Mumbai
     jd: /jd/Key_Account_Manager.pdf
     apply:  https://docs.google.com/forms/u/1/d/e/1FAIpQLScG_82ZYK0UNkoUmRi0391lQAY8TWQM0CIourVXTRZAAMxn8Q/viewform?authuser=1

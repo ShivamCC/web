@@ -37,7 +37,7 @@
       "clickable":true,
       "children": [
         { "name": "Team", "url": "/team/" },
-        { "name": "Careers", "url": "/careers/" }
+        { "name": "Careers", "url": "/career/" }
       ]
     },
 

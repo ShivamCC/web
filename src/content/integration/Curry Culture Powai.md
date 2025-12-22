@@ -1,5 +1,5 @@
 ---
-title: Curry Culture Powai
+title: Curry Culture
 image: "/images/integration/Curry Culture Powai.png"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""

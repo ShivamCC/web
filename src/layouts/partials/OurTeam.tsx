@@ -10,17 +10,23 @@ const OurTeam = () => {
   ).frontmatter;
 
   return (
-    <section className="section overflow-hidden">
+    <section className="section">
       <div className="container">
         <div className="row">
-          {/* HEADER */}
-          <div className="lg:col-10" data-aos="fade-up-sm">
+          {/* ================= HEADER ================= */}
+          <div
+            className="mx-auto text-center lg:col-10"
+            data-aos="fade-up-sm"
+          >
             {title && (
               <h2
-                className="has-gradient mb-4"
+                className="has-gradient mb-6"
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
+
+            <div className="mx-auto mb-6 h-[2px] w-20 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-80" />
+
             {description && (
               <p
                 className="text-lg/[inherit] opacity-80"
@@ -29,30 +35,35 @@ const OurTeam = () => {
             )}
           </div>
 
-          {/* TEAM CARDS */}
+          {/* ================= TEAM CARDS ================= */}
           <div className="col-12 pt-24">
-            <div className="row gx-6 gy-10">
-              {list?.map((item: Team, i: number) => (
-                <div
-                  className="lg:col-4"
-                  key={i}
-                  data-aos="zoom-in-up"
-                  data-aos-delay={i * 120}
-                  data-aos-duration="900"
-                  data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
-                >
-                  {/* SLAM CONTAINER */}
+            <div className="row gx-6 gy-16">
+              {list?.map((item: Team, i: number) => {
+                // 🔥 YAHI PE LINKEDIN LABEL ADD HO RAHA HAI
+                const updatedItem: Team = {
+                  ...item,
+                  social: item.social?.map((s) =>
+                    s.name === "linkedin"
+                      ? { ...s, label: "Connect" }
+                      : s,
+                  ),
+                };
+
+                return (
                   <div
-                    className="
-                      relative
-                      will-change-transform
-                      transition-transform
-                    "
+                    key={i}
+                    className="lg:col-4 mb-12"
+                    data-aos="zoom-in-up"
+                    data-aos-delay={i * 120}
+                    data-aos-duration="900"
+                    data-aos-easing="cubic-bezier(0.22, 1, 0.36, 1)"
                   >
-                    <TeamCard data={item} />
+                    <div className="relative h-full overflow-visible">
+                      <TeamCard data={updatedItem} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

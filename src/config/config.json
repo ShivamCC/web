@@ -4,13 +4,13 @@
     "base_url": "https://darkrise-nextjs.vercel.app",
     "base_path": "/",
     "trailing_slash": true,
-    "favicon": "/images/logo.svg",
-    "logo": "/images/logo.svg",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
     "logo_width": "124px",
-    "logo_height": "26px",
-    "logo_footer": "/images/logo.svg",
+    "logo_height": "60px",
+    "logo_footer": "/images/logo.png",
     "logo_footer_width": "225px",
-    "logo_footer_height": "48px",
+    "logo_footer_height": "112px",
     "logo_text": "Darkrise"
   },
 
