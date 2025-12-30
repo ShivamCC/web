@@ -1,6 +1,6 @@
 ---
 title: China Box
-image: "/images/integration/China Box.jpeg"
+image: "/images/integration/China-Box.jpeg"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

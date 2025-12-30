@@ -1,4 +1,4 @@
-import FeaturedTestimonial from "@/components/FeaturedTestimonial";
+// import FeaturedTestimonial from "@/components/FeaturedTestimonial";
 import { getListPage } from "@/lib/contentParser";
 import CallToAction2 from "@/partials/CallToAction2";
 import FeaturesGrid from "@/partials/FeaturesGrid";

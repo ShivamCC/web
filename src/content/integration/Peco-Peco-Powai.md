@@ -1,6 +1,6 @@
 ---
 title: Peco Peco 
-image: "/images/integration/Peco Peco Powai.png"
+image: "/images/integration/Peco-Peco-Powai.png"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

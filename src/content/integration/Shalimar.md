@@ -1,6 +1,6 @@
 ---
 title: Shalimar
-image: "/images/integration/Shalimar Logo.jpeg"
+image: "/images/integration/Shalimar-Logo.jpeg"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

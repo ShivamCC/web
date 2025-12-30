@@ -1,6 +1,6 @@
 ---
 title: TBSE
-image: "/images/integration/TBSE Logo.jpg"
+image: "/images/integration/TBSE-Logo.jpg"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

@@ -8,11 +8,11 @@ const FeaturesCardLayout = ({
 }: {
   features?: FeatureCardLayout["frontmatter"];
 }) => {
-  let { title, description, list,button}: FeatureCardLayout["frontmatter"] =
+  let { title, description, list}: FeatureCardLayout["frontmatter"] =
     getListPage("sections/features-card-layout.md").frontmatter;
 
   if (features) {
-    ({ title, description, button } = features);
+    ({ title, description} = features);
   }
 
   return (
@@ -144,7 +144,7 @@ const FeaturesCardLayout = ({
       </div>
 
       {/* ================= BUTTON ================= */}
-      {button?.enable && (
+      {/* {button?.enable && (
         <div className="mt-12 flex justify-center" data-aos="fade-up-sm">
           <a
             href={button.link}
@@ -158,7 +158,7 @@ const FeaturesCardLayout = ({
             {button.label}
           </a>
         </div>
-      )}
+      )} */}
     </section>
   );
 };

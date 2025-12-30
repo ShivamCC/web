@@ -8,12 +8,12 @@ import ImageFallback from "@/helpers/ImageFallback";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Figtree } from "next/font/google";
+// import { Figtree } from "next/font/google";
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+// const figtree = Figtree({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700"],
+// });
 
 
 export interface ChildNavigationLink {
@@ -33,7 +33,7 @@ export interface NavigationLink {
 }
 
 const Header = () => {
-  const { main }: { [key: string]: NavigationLink[] } = menu;
+ const { main } = menu as { main: NavigationLink[] };
   const { navigation_button } = config;
   const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
@@ -146,7 +146,7 @@ const Header = () => {
 </span>
 
                     <div className={`mega-menu-wrapper ${activeDropdown === index ? 'block' : 'hidden'} max-lg:flex-col lg:invisible lg:absolute lg:left-1/4 lg:flex lg:opacity-0 lg:transition-all lg:duration-300 lg:group-hover:visible lg:group-hover:opacity-100`}>
-                      {menu.children?.map((subchild, subIndex) => (
+                      {menu.children?.map((subchild) => (
                         <div
                           key={subchild.name}
                           className="flex flex-col gap-5"

@@ -1,6 +1,6 @@
 ---
 title: Persian Darbar
-image: "/images/integration/Persian Darbar Bandra.png"
+image: "/images/integration/Persian-Darbar-Bandra.png"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

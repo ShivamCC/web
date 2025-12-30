@@ -1,10 +1,10 @@
-import AnimatedAnchor from "@/components/AnimatedAnchor";
+// import AnimatedAnchor from "@/components/AnimatedAnchor";
 import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
 const CallToAction1 = () => {
-  const { enable, title, description, button, image, bg_image } = getListPage(
+  const { enable, title, description, image, bg_image } = getListPage(
     "sections/call-to-action-1.md",
   ).frontmatter;
 

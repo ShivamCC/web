@@ -1,6 +1,6 @@
 ---
-title: Buzz And Banter
-image: "/images/integration/Buzz And Banter.png"
+title: 5 Spice
+image: "/images/integration/5-Spice.png"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""
 type: Social Media

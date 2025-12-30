@@ -5,7 +5,7 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Feature } from "@/types";
 
-const FeaturesStickyLayout = ({ sticky = true }: { sticky?: boolean }) => {
+const FeaturesStickyLayout = ({ }: { sticky?: boolean }) => {
   const features = getListPage("sections/features.md").frontmatter;
 
   return (

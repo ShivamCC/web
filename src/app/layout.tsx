@@ -1,5 +1,5 @@
 import config from "@/config/config.json";
-import theme from "@/config/theme.json";
+// import theme from "@/config/theme.json";
 import TwSizeIndicator from "@/helpers/TwSizeIndicator";
 import Footer from "@/partials/Footer";
 import Header from "@/partials/Header";
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   // import google font css
-  const pf = theme.fonts.font_family.primary;
+  // const pf = theme.fonts.font_family.primary;
 
   return (
     <html suppressHydrationWarning={true} lang="en">
