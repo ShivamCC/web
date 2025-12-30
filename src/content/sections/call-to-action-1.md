@@ -1,7 +1,7 @@
 ---
 enable: true
-title: Grow your sales now
-image: "/images/dashsales.jpeg"
+title: Grow your Brands Presence
+image: "/images/graph.png"
 bg_image: "/images/call-to-action-bg.png"
 description: Gain invaluable predictive analytics and actionable insights empowering your to make data-driven decisions.
 button:

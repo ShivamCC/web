@@ -22,7 +22,7 @@ const CareerCta = () => {
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
-
+ <div className="mx-auto mb-6 h-[2px] w-20 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-80" />
             {description && (
               <p
                 className="text-lg/[inherit] opacity-80"
@@ -61,48 +61,49 @@ const CareerCta = () => {
                     </p>
 
                     {/* Footer */}
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-text/60">
-                        📍 {job.location}
-                      </span>
+                    {/* Footer */}
+<div className="flex items-center justify-between gap-4 text-sm">
+  
+  {/* Location */}
+  <span className="shrink-0 text-text/60">
+    📍 {job.location}
+  </span>
 
-                      <div className="flex items-center gap-4">
-                        {/* Download JD */}
-                        {job.jd && (
-  <a
-    href={job.jd}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/80 transition hover:bg-white/10"
-  >
-    {/* PDF Icon */}
-    <span className="flex h-6 w-6 items-center justify-center rounded bg-red-500/20 text-red-400 text-[10px] font-semibold">
-      PDF
-    </span>
+  {/* Actions */}
+  <div className="flex items-center gap-3 shrink-0">
+    
+    {/* Download JD */}
+    {job.jd && (
+      <a
+        href={job.jd}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-white/80 transition hover:bg-white/10"
+      >
+        <span className="flex h-6 w-6 items-center justify-center rounded bg-red-500/20 text-red-400 text-[10px] font-semibold">
+          PDF
+        </span>
+        <span className="max-w-[120px] truncate">
+          Job_Description.pdf
+        </span>
+      </a>
+    )}
 
-    {/* File name */}
-    <span className="max-w-[140px] truncate">
-      Job_Description.pdf
-    </span>
-  </a>
-)}
+    {/* Apply */}
+    {job.apply && (
+      <a
+        href={job.apply}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-white transition hover:opacity-90"
+      >
+        Apply
+      </a>
+    )}
 
+  </div>
+</div>
 
-                        {/* Apply */}
-                        {/* ✅ Apply — PER CARD */}
-{job.apply && (
-  <a
-    href={job.apply}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-white transition hover:opacity-90"
-  >
-    Apply
-  </a>
-)}
-
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>

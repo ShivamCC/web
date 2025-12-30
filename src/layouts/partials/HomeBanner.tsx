@@ -4,69 +4,38 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 
 const HomeBanner = () => {
-  const { title, note, description, buttons, list, image } = getListPage(
+  const { title, note, description, buttons, image } = getListPage(
     "sections/home-banner.md",
   ).frontmatter;
 
   return (
-    <section className="relative overflow-hidden pb-0 pt-20 home-banner">
-      {/* 🌫️ NOISE */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 hero-noise opacity-40"
-      />
-
-      {/* 🌈 BASE GRADIENT */}
-      <div
-        aria-hidden
-        className="
-          pointer-events-none absolute inset-0 -z-10
-          bg-gradient-to-tr from-primary/20 via-secondary/20 to-primary/20
-        "
-      />
-
+    <section className="relative overflow-hidden pb-0 pt-16">
       <div className="container">
         <div className="row justify-center">
+
           {/* ================= TEXT ================= */}
           <div className="pt-6 text-center md:col-9 lg:col-9">
+
             {note && (
-              <div
-                data-aos="fade-up-sm"
-                className="border-animation mx-auto mb-4 w-fit rounded-full p-px"
-              >
-                <div className="border-animation-inner flex gap-2 rounded-full border border-white/15 px-3 py-1.5 backdrop-blur-md">
-                  <ImageFallback
-                    width={24}
-                    height={24}
-                    src="/images/icons/svg/award.svg"
-                    alt="note"
-                  />
-                  <span
-                    className="text-sm opacity-70 md:text-base"
-                    dangerouslySetInnerHTML={markdownify(note)}
-                  />
-                </div>
+              <div className="mx-auto mb-4 w-fit rounded-full border border-white/15 px-3 py-1.5">
+                <span
+                  className="text-sm opacity-70 md:text-base"
+                  dangerouslySetInnerHTML={markdownify(note)}
+                />
               </div>
             )}
 
-            {/* 🔥 TITLE — NO AOS, NO FLASH */}
+            {/* ===== TEXT FLASH (RIGHT → LEFT) ===== */}
             {title && (
               <h1
-                suppressHydrationWarning
-                className="
-                  hero-title
-                  mb-4 text-h2 lg:text-h1 font-semibold tracking-tight
-                  bg-gradient-to-r from-white via-primary to-white
-                  bg-clip-text text-transparent
-                "
+                className="mb-4 text-h2 lg:text-h1 title-text-flash-rtl"
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
 
             {description && (
               <p
-                data-aos="fade-up-sm"
-                className="mb-10 text-xl/[inherit] text-light opacity-90"
+                className="mb-8 text-xl/[inherit] text-light"
                 dangerouslySetInnerHTML={markdownify(description)}
               />
             )}
@@ -78,11 +47,7 @@ const HomeBanner = () => {
                     { label, link }: { label: string; link: string },
                     index: number,
                   ) => (
-                    <li
-                      key={index}
-                      data-aos="fade-up-sm"
-                      data-aos-delay={100 + index * 50}
-                    >
+                    <li key={index}>
                       <AnimatedAnchor
                         className={
                           index === 0
@@ -90,8 +55,6 @@ const HomeBanner = () => {
                             : "btn-outline-transparent"
                         }
                         link={link}
-                        target={link.startsWith("http") ? "_blank" : "_self"}
-                        rel="noopener"
                         label={label}
                         hideIcon={index !== 0}
                       />
@@ -100,94 +63,54 @@ const HomeBanner = () => {
                 )}
               </ul>
             )}
-
-            {list && (
-              <ul
-                data-aos="fade-up-sm"
-                data-aos-delay="200"
-                className="mt-6 flex flex-wrap justify-center gap-4"
-              >
-                {list.map((item: string, index: number) => (
-                  <li
-                    key={index}
-                    className="flex items-center gap-4 text-sm opacity-70"
-                  >
-                    {index !== 0 && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-white/70" />
-                    )}
-                    <span dangerouslySetInnerHTML={markdownify(item)} />
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
 
           {/* ================= IMAGE ================= */}
           {image && (
-            <div
-              className="col-12 pt-12 lg:pt-24"
-              data-aos="fade-up-sm"
-              data-aos-delay="400"
-            >
-              <div className="max-h-[825px]">
-                <div className="group relative mx-auto max-w-[900px] perspective-[1200px]">
-                  <span
-                    aria-hidden
-                    className="
-                      absolute -inset-12 -z-10
-                      rounded-full
-                      bg-gradient-to-tr from-primary/30 via-secondary/30 to-primary/30
-                      blur-[140px]
-                    "
-                  />
-
-                  <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
-
-                  <div
-                    className="
-                      relative
-                      animate-float-slow
-                      transition-all duration-700 ease-out
-                      will-change-transform
-                      group-hover:-translate-y-10
-                      group-hover:scale-[1.05]
-                      group-hover:rotate-x-6
-                      group-hover:-rotate-y-6
-                      group-hover:shadow-[0_90px_160px_-50px_rgba(0,0,0,0.85)]
-                    "
-                  >
-                    <ImageFallback
-                      src={image.src}
-                      alt={image.alt}
-                      width={700}
-                      height={600}
-                      className="mx-auto rounded-2xl"
-                    />
-                  </div>
-                </div>
+            <div className="col-12 pt-8 lg:pt-16">
+              <div className="mx-auto max-w-[900px]">
+                <ImageFallback
+                  src={image.src}
+                  alt={image.alt}
+                  width={900}
+                  height={700}
+                  className="mx-auto rounded-2xl"
+                />
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* 🔒 HARD KILL FLASH */}
+      {/* ================= TEXT FLASH CSS ================= */}
       <style>{`
-        .home-banner [data-aos] {
-          opacity: 1 !important;
-          transform: none !important;
+        .title-text-flash-rtl {
+          font-weight: 600;
+          background: linear-gradient(
+            110deg,
+            #9ca3af 0%,
+            #ffffff 40%,
+            #9ca3af 55%,
+            #9ca3af 100%
+          );
+          background-size: 220% auto;
+          background-position: 0% center; /* start RIGHT */
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: textFlashRTL 5s ease-in-out infinite;
         }
 
-        .hero-title {
-          opacity: 1 !important;
-          transform: none !important;
-          animation: none !important;
-        }
-
-        /* shimmer AFTER load only */
-        @media (prefers-reduced-motion: no-preference) {
-          .hero-title {
-            animation: shimmer 6s linear infinite;
+        /* RIGHT → LEFT */
+        @keyframes textFlashRTL {
+          0% {
+            background-position: 0% center;
+          }
+          50% {
+            background-position: 200% center;
+          }
+          100% {
+            background-position: 200% center;
           }
         }
       `}</style>

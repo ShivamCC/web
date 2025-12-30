@@ -11,9 +11,9 @@ const CallToAction2 = () => {
   return (
     <>
       {enable && (
-        <section className="section">
+        <section className="section pt-0 -mt-32">
           <div className="container">
-            <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-dark/60 py-40">
+            <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-dark/60 py-24">
               {/* Background */}
               <ImageFallback
                 className="absolute inset-0 z-0 h-full w-full"

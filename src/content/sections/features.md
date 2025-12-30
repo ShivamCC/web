@@ -1,25 +1,25 @@
 ---
-- title: Menu & prize Optimization
+- title: Menu & brand Optimization
   images:
-    - "/images/features/engg.jpg"
-    - "/images/features/opt.jpg"
+    - "/images/features/menuop.png"
+    - "/images/features/menu2.png"
   description: Optimizing your menu and brand presence to improve visibility,conversions and overall
-    restaurant performance.
+    restaurant performance.<br/>
     We Focus on <br/>
-    -Menu structure, pricing & item placement <br/>
-    -Brand Presentation across delivery platforms <br/>
+    -Menu structure & item placement <br/>
+    -Brand Presentation across platforms <br/>
     -Customer appeal and discoverability <br/>
     -Data backed improvements for higher order value <br/>
   list:
     - Menu Re-engineering
     - Menu Stacking
     - Price Optimization
-    - Menu Comparison with competitor brands
+    - Menu Comparison 
  
 - title: Growth Strategy & Planning
   images:
-    - "/images/features/growth.jpg"
-    - "/images/features/growth2.jpg"
+    - "/images/features/gg1.png"
+    - "/images/features/gg3.png"
   description: A structured, data-driven approach to scale your restaurant’s revenue, reach, and profitability.</br>
 
     We focus on </br>
@@ -29,15 +29,15 @@
     - Expansion strategy across locations </br>
     - KPI tracking  </br>
   list:
-    - Revenue & Growth Roadmap Planning
+    - Revenue Growth & Planning
     - Customer Acquisition Strategy
     - Retention & Loyalty Planning
     - Channel & Platform Growth Strategy
 
 - title: Account & Platform management
   images:
-    - "/images/features/account.jpg"
-    - "/images/features/account2.jpg"
+    - "/images/features/accf3.png"
+    - "/images/features/accf2.png"
     # - "/images/features/account.jpg"
   description: End-to-end management of your restaurant’s online accounts to ensure maximum visibility, smooth operations, and consistent growth across platforms.</br>
 
@@ -56,8 +56,8 @@
 
 - title: Performance & Marketing Campaigns
   images:
-    - "/images/features/Performance.jpg"
-    - "/images/features/camp.png"
+    - "/images/features/ads1.png"
+    - "/images/features/ads2.png"
   description: Data-led marketing and performance campaigns designed to drive demand, maximize ROI, and improve customer experience across platforms.<br/>
 
     We focus on</br>
@@ -76,8 +76,8 @@
 
 - title: Data Analytics & Revenue Forecasting
   images:
-    - "/images/features/forecasting.jpg"
-    - "/images/features/for.jpg"
+    - "/images/features/r1.jpeg"
+    - "/images/features/r2.jpeg"
   description: Actionable analytics and forecasting models that help restaurants make informed decisions,improved profitabilty,and plan sustainable growth</br>
 
     We focus on</br>
@@ -95,8 +95,8 @@
 
 - title: Quality & Operational Excellence
   images:
-    - "/images/features/quality.png"
-    - "/images/features/ops.jpg"
+    - "/images/features/kpt1.png"
+    - "/images/features/kpt2.png"
   description: Strengthening day-to-day operations and service quality to deliver consistent customer experiences, reduce complaints, and improve overall restaurant performance.</br>
 
     We focus on</br>

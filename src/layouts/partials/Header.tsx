@@ -8,6 +8,13 @@ import ImageFallback from "@/helpers/ImageFallback";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Figtree } from "next/font/google";
+
+const figtree = Figtree({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 
 export interface ChildNavigationLink {
   name: string;
@@ -60,8 +67,16 @@ const Header = () => {
       >
         <nav className="navbar container relative z-10 h-20">
           {/* logo  */}
-          <div className="">
-            <Logo />
+          <div className="flex items-center h-15 gap-0 ">
+            <Logo/>
+          {/* <span className="text-3xl leading-none scale-[0.9] origin-left inline-block">
+  Culinary
+  <span className="block font-semibold -mt-[2px]">Compass</span>
+</span> */}
+
+
+
+
 
           </div>
           {/* navbar toggler  */}

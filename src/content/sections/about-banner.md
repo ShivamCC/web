@@ -1,12 +1,12 @@
 ---
 title: Our Story
 images: 
-  - /images/office1.jpeg
-  - /images/office2.jpeg
-  - /images/office3.jpeg
-  - /images/office4.jpeg
-  - /images/office5.jpeg
-  - /images/office6.jpeg
+  - /images/collage img.png
+  # - /images/office2.jpeg
+  # - /images/office3.jpeg
+  # - /images/office4.jpeg
+  # - /images/office5.jpeg
+  # - /images/office6.jpeg
   
 description: |
   At Culinary Compass, we are on a mission to help restaurants and food brands thrive in the digital era. With 10+ years of experience in the Food Tech space, we understand the challenges that restaurant e-commerce businesses face—from optimizing online sales to enhancing customer retention.

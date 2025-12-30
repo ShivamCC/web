@@ -1,5 +1,5 @@
 ---
-title: Western
+title: Western Tadka
 image: "/images/integration/Western.jpeg"
 description: Gain invaluable predictive analytics and actionable insights, empowering your to make data-driven decisions.
 meta_title: ""

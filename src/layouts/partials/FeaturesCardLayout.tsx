@@ -11,85 +11,130 @@ const FeaturesCardLayout = ({
   let { title, description, list, button }: FeatureCardLayout["frontmatter"] =
     getListPage("sections/features-card-layout.md").frontmatter;
 
-  // Override title & description if features is passed in
   if (features) {
-    ({ title, description } = features);
+    ({ title, description, button } = features);
   }
 
   return (
-    <section className="section">
-      <div className="container">
+    <section className="section pt-16 pb-4">
+      {/* 🔥 wider container on desktop */}
+      <div className="container max-w-[1400px]">
         <div className="row">
-          <div className="mx-auto text-center lg:col-6" data-aos="fade-up-sm">
+
+          {/* ================= HEADER ================= */}
+          <div
+            className="mx-auto mb-10 text-center lg:col-7"
+            data-aos="fade-up-sm"
+          >
             {title && (
               <h2
-                className="has-gradient mb-6"
+                className="
+                  has-gradient mb-4 font-semibold
+                  text-[clamp(2rem,3.2vw,2.8rem)]
+                  leading-tight
+                "
                 dangerouslySetInnerHTML={markdownify(title)}
               />
             )}
+ <div className="mx-auto mb-6 h-[2px] w-20 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-80" />
             {description && (
               <p
-                className="text-lg/[inherit] opacity-80"
+                className="
+                  mx-auto max-w-2xl
+                  text-[clamp(1.05rem,1.4vw,1.2rem)]
+                  leading-relaxed
+                  opacity-80
+                "
                 dangerouslySetInnerHTML={markdownify(description)}
               />
             )}
           </div>
-          <div className="col-12 pt-20">
-            <div className="row g-4 justify-center">
+
+          {/* ================= CARDS ================= */}
+          <div className="col-12">
+            <div className="row gx-4 gy-4">
               {list?.map((item, index: number) => (
                 <div
                   key={index}
-                  className="md:col-6 lg:col-4"
+                  className="
+                    col-12
+                    sm:col-6
+                    lg:col-4
+                  "
                   data-aos="fade-up-sm"
-                  data-aos-delay={index * 100}
+                  data-aos-delay={index * 60}
                 >
-                  <div className="group relative min-h-full overflow-hidden rounded-lg border border-border bg-body p-9">
+                  <div
+                    className="
+                      group relative h-full
+                      rounded-2xl
+                      border border-border
+                      bg-body
+                      p-6
+                      transition-all duration-300
+                      hover:-translate-y-1
+                    "
+                  >
+                    {/* ================= ICON ================= */}
                     {item.icon && (
-                     <div className="mb-12 flex h-14 w-14 overflow-hidden items-center justify-start 
-            rounded-lg bg-gradient-to-b from-primary/20 to-secondary/20">
-
-                        <div className="h-14 w-14 transition duration-500 ease-out group-hover:-translate-y-full flex flex-col items-start">
-                          <div className="min-w-14 flex justify-center items-center min-h-14">
-                            <ImageFallback
-                              className="h-7 w-7 object-cover"
-                              src={item.icon}
-                              alt={`icon related to ${item.title}`}
-                              width={28}
-                              height={28}
-                            />
-                          </div>
-                          <div
-                            className="min-w-14 flex justify-center items-center min-h-14"
-                            aria-hidden="true"
-                          >
-                            <ImageFallback
-                              src={item.icon}
-                              className="h-7 w-7 object-cover"
-                              alt={`icon related to ${item.title}`}
-                              width={28}
-                              height={28}
-                            />
-                          </div>
-                        </div>
+                      <div
+                        className="
+                          mb-4 flex h-11 w-11
+                          items-center justify-center
+                          rounded-lg
+                          bg-gradient-to-b from-primary/20 to-secondary/20
+                        "
+                      >
+                        <ImageFallback
+                          src={item.icon}
+                          alt=""
+                          width={22}
+                          height={22}
+                          className="h-5 w-5"
+                        />
                       </div>
                     )}
+
+                    {/* ================= TITLE ================= */}
                     {item.title && (
                       <h3
-                        className="tracking-none mb-4 text-xl/snug"
-                        dangerouslySetInnerHTML={markdownify(item.title)}
-                      />
+                        className="
+                          mb-2 font-semibold text-white
+                          text-[clamp(1.2rem,1.6vw,1.45rem)]
+                          leading-[1.35]
+                          tracking-[0.01em]
+                        "
+                      >
+                        {item.title}
+                      </h3>
                     )}
+
+                    {/* ================= DESCRIPTION ================= */}
                     {item.description && (
                       <p
-                        className="opacity-60"
-                        dangerouslySetInnerHTML={markdownify(item.description)}
+                        className="
+                          text-[clamp(1.05rem,1.2vw,1.15rem)]
+                          leading-relaxed
+                          opacity-75
+                        "
+                        dangerouslySetInnerHTML={markdownify(
+                          item.description,
+                        )}
                       />
                     )}
 
-                    <div className="pointer-events-none absolute bottom-[-22%] right-[-40%] 
-    h-[180px] w-[335px] rotate-[-20deg] bg-gradient-to-l 
-    from-body/0 to-primary opacity-0 blur-[83px] 
-    transition-opacity duration-300 group-hover:opacity-100" />
+                    {/* ================= HOVER GLOW ================= */}
+                    <div
+                      className="
+                        pointer-events-none absolute -bottom-24 -right-32
+                        h-[150px] w-[260px]
+                        rotate-[-20deg]
+                        bg-gradient-to-l from-body/0 to-primary
+                        opacity-0 blur-[80px]
+                        transition-opacity duration-300
+                        group-hover:opacity-100
+                      "
+                    />
                   </div>
                 </div>
               ))}
@@ -97,17 +142,23 @@ const FeaturesCardLayout = ({
           </div>
         </div>
       </div>
-      {button?.enable && (
-  <div className="mt-14 flex justify-center" data-aos="fade-up-sm">
-    <a
-      href={button.link}
-      className="btn-primary px-8 py-3 text-lg font-semibold rounded-xl"
-    >
-      {button.label}
-    </a>
-  </div>
-)}
 
+      {/* ================= BUTTON ================= */}
+      {button?.enable && (
+        <div className="mt-12 flex justify-center" data-aos="fade-up-sm">
+          <a
+            href={button.link}
+            className="
+              btn-primary rounded-xl
+              px-9 py-3.5
+              font-semibold
+              text-[clamp(1rem,1.3vw,1.1rem)]
+            "
+          >
+            {button.label}
+          </a>
+        </div>
+      )}
     </section>
   );
 };

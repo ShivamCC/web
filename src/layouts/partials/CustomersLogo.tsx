@@ -9,118 +9,115 @@ const CustomersLogo = () => {
   ).frontmatter;
 
   return (
-    <>
-      {sections?.map((section: any, idx: number) => (
-        <section key={idx} className="section font-primary">
-          <div className="container">
+    <section
+      className="h-screen"
+      style={{ fontFamily: "Figtree, sans-serif" }}
+    >
+      <div className="container h-full">
 
-            {/* TITLE */}
-            <div className="text-center" data-aos="fade-up-sm">
-              <p
-                className="text-4xl/snug
-    md:text-5xl
-    font-semibold
-    tracking-tight
-    text-white"
-                dangerouslySetInnerHTML={markdownify(section.title)}
-              />
-            </div>
+        {/* 🔒 FORCE EVERYTHING INTO ONE FRAME */}
+        <div className="flex h-full flex-col justify-center gap-3">
 
-            {/* DESCRIPTION */}
-            {section.description && (
+          {sections?.map((section: any, idx: number) => (
+            <div
+              key={idx}
+              className="flex-1 flex flex-col justify-center"
+            >
+              {/* TITLE */}
+              <div className="text-center">
+                <p
+                  className="
+                    font-semibold tracking-tight text-white
+                    text-[clamp(22px,2.5vw,40px)]
+                    leading-tight
+                  "
+                  dangerouslySetInnerHTML={markdownify(section.title)}
+                />
+              </div>
+ <div className="mx-auto mb-3 h-[2px] w-20 rounded-full bg-gradient-to-r from-primary via-secondary to-primary opacity-80" />
+              {/* DESCRIPTION */}
+              {section.description && (
+                <div
+                  className="
+                    mx-auto mt-1
+                    max-w-3xl
+                    text-center
+                    text-[clamp(13px,1.3vw,18px)]
+                    leading-relaxed
+                    text-white/80
+                  "
+                  dangerouslySetInnerHTML={markdownify(
+                    section.description,
+                    true
+                  )}
+                />
+              )}
+
+              {/* STATS */}
               <div
-                className="mx-auto mt-5
-    max-w-3xl
-    text-center
-    text-lg
-    md:text-xl
-    font-medium
-    leading-relaxed
-    text-white/85"
-                dangerouslySetInnerHTML={markdownify(section.description, true)}
-              />
-            )}
+                className="
+                  mt-4
+                  grid grid-cols-2 lg:grid-cols-4
+                  gap-[clamp(12px,2vw,20px)]
+                "
+              >
+                {section.stats.map((item: any, i: number) => {
+                  const { value, suffix } = formatStatNumber(item.number);
 
-            {/* STATS */}
-            <div className="pt-28 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              {section.stats.map((item: any, i: number) => {
-                const { value, suffix } = formatStatNumber(item.number);
-
-                return (
-                  <div
-                    key={i}
-                    data-aos="fade-up"
-                    data-aos-delay={i * 90}
-                    className="
-                      relative group
-                      rounded-2xl
-                      border border-white/10
-                      bg-[radial-gradient(120%_120%_at_50%_0%,rgba(255,255,255,0.06),rgba(0,0,0,0))]
-                      bg-gradient-to-b from-[#0f1a2f] to-[#0b1324]
-                      px-8 pb-8 pt-16
-                      text-center
-                      shadow-[0_20px_60px_rgba(0,0,0,0.45)]
-                      transition-all duration-300
-                      hover:-translate-y-1
-                    "
-                  >
-                    {/* FLOATING ICON (NORMALIZED) */}
-                    {item.icon && (
-                      <div
-                        data-aos="zoom-in"
-                        data-aos-delay={i * 90}
-                        className="
-                          absolute -top-6 left-1/2 -translate-x-1/2
-                          flex h-12 w-12 items-center justify-center
-                          rounded-xl
-                          bg-[#141414]/80
-                          ring-1 ring-white/10
-                          backdrop-blur
-                          shadow-[0_0_24px_rgba(255,193,74,0.22)]
-                          transition
-                          group-hover:shadow-[0_0_32px_rgba(255,193,74,0.32)]
-                        "
-                      >
-                        {/* INNER FIXED FRAME = SAME VIEW FOR ALL ICONS */}
-                        <div className="relative h-6 w-6 flex items-center justify-center">
+                  return (
+                    <div
+                      key={i}
+                      className="
+                        relative
+                        rounded-xl
+                        border border-white/10
+                        bg-gradient-to-b from-[#0f1a2f] to-[#0b1324]
+                        px-4 pt-10 pb-4
+                        text-center
+                      "
+                    >
+                      {/* ICON */}
+                      {item.icon && (
+                        <div
+                          className="
+                            absolute -top-4 left-1/2 -translate-x-1/2
+                            flex h-8 w-8 items-center justify-center
+                            rounded-lg
+                            bg-[#141414]/80
+                            ring-1 ring-white/10
+                          "
+                        >
                           <img
                             src={item.icon}
-                            alt={`${item.label} icon`}
-                            className="max-h-full max-w-full object-contain scale-[0.85]"
+                            alt=""
+                            className="h-4 w-4 object-contain"
                             style={{
                               filter:
                                 "invert(78%) sepia(53%) saturate(600%) hue-rotate(360deg)",
                             }}
                           />
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* NUMBER */}
-                    <h2
-                      data-aos="fade-up"
-                      data-aos-delay={i * 90 + 160}
-                      className="text-[42px] font-semibold text-white tracking-tight leading-none"
-                    >
-                      <CountStat number={value} suffix={suffix} />
-                    </h2>
+                      {/* NUMBER */}
+                      <h2 className="text-[clamp(22px,2.4vw,34px)] font-semibold text-white leading-none tracking-[0.03rem]">
+                        <CountStat number={value} suffix={suffix} />
+                      </h2>
 
-                    {/* LABEL */}
-                    <p
-                      data-aos="fade-up"
-                      data-aos-delay={i * 90 + 300}
-                      className="mt-3 text-[16.5px] text-white/60"
-                    >
-                      {item.label}
-                    </p>
-                  </div>
-                );
-              })}
+                      {/* LABEL */}
+                      <p className="mt-1 text-[clamp(12px,1.1vw,15px)] text-white/60">
+                        {item.label}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
-    </>
+          ))}
+
+        </div>
+      </div>
+    </section>
   );
 };
 

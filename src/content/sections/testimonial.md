@@ -1,5 +1,5 @@
 ---
-subtitle: Read Customer’s Review
+subtitle: Read Brand’s Review
 title: Meet Happy Customers
 
 # Button

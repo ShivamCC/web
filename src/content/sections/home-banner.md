@@ -5,7 +5,7 @@ title: "Shaping the Future of restaurant growth in the digital age"
 description: From menu to metrics we optimize every touchpoint that drives sales.
 
 image:
-  src: "/images/dash.jpeg" # Main Image
+  src: "/images/sales.png"
   alt: "image alt"
 
 # buttons:

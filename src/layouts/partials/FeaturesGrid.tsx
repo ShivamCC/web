@@ -1,152 +1,192 @@
 import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
-import { type FeaturesGrid } from "@/types";
+import { type FeaturesGrid as FeaturesGridType } from "@/types";
 
 const FeaturesGrid = ({ largeHeading }: { largeHeading?: boolean }) => {
-  const { title, description, list }: FeaturesGrid["frontmatter"] = getListPage(
-    "sections/features-grid.md",
-  ).frontmatter;
+  const { title, description, list }: FeaturesGridType["frontmatter"] =
+    getListPage("sections/features-grid.md").frontmatter;
 
   return (
-    <section className="section">
-      <div className="container">
-        <div className="row">
-          <div
-            className="mx-auto text-center lg:col-9 xl:col-7"
-            data-aos="fade-up-sm"
-          >
-            {title && largeHeading ? (
-              <h1
-                className="has-gradient mb-6"
-                dangerouslySetInnerHTML={markdownify(title)}
-              />
-            ) : (
-              <h2
-                className="has-gradient mb-6"
-                dangerouslySetInnerHTML={markdownify(title)}
-              />
-            )}
-            {description && (
-              <p
-                className="text-lg/[inherit] opacity-80"
-                dangerouslySetInnerHTML={markdownify(description)}
-              />
-            )}
-          </div>
-          <div className="col-12 pt-20">
-            <div className="row gx-4 gy-5">
-              {list?.map((item, index: number) => (
-                <div
-                  key={index}
-                  className="lg:col-4"
-                  data-aos="fade-up-sm"
-                  data-aos-delay={index * 150}
-                >
+    <>
+      {/* ===== INLINE CSS (SERVER SAFE) ===== */}
+      <style>{`
+        @keyframes fadeSlideDown {
+          0% {
+            opacity: 0;
+            transform: translateY(-12px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .fade-slide-down {
+          animation: fadeSlideDown 0.6s ease-out forwards;
+        }
+      `}</style>
+
+      <section className="section pb-12 md:pb-16">
+        <div className="container">
+          <div className="row">
+            {/* ================= HEADER ================= */}
+            <div
+              className="mx-auto text-center lg:col-9 xl:col-7"
+              data-aos="fade-up-sm"
+            >
+              {title &&
+                (largeHeading ? (
+                  <h1
+                    className="has-gradient mb-4"
+                    dangerouslySetInnerHTML={markdownify(title)}
+                  />
+                ) : (
+                  <h2
+                    className="has-gradient mb-4"
+                    dangerouslySetInnerHTML={markdownify(title)}
+                  />
+                ))}
+
+              {description && (
+                <p
+                  className="text-lg opacity-80"
+                  dangerouslySetInnerHTML={markdownify(description)}
+                />
+              )}
+            </div>
+
+            {/* ================= CARDS ================= */}
+            <div className="col-12 pt-10 md:pt-12">
+              <div className="row gx-4 gy-4 items-stretch">
+                {list?.map((item, index) => (
                   <div
-                    className={`flex min-h-full justify-between overflow-hidden rounded-lg border border-border bg-dark ${index === 0 ? "flex-col-reverse p-8" : index === 1 ? "pt-8 px-8 flex-col" : index === 2 ? "flex-col pl-8 pt-8" : "flex-col p-8"}`}
+                    key={index}
+                    className="lg:col-4"
+                    data-aos="fade-up-sm"
+                    data-aos-delay={index * 120}
                   >
-                    <div className={(index === 2 && "pe-8") || ""}>
-                      {item.title && (
-                        <h3
-                          className="h6 tracking-none mb-4 font-semibold"
-                          dangerouslySetInnerHTML={markdownify(item.title)}
-                        />
-                      )}
-                      {item.description && (
-                        <p
-                          className="mb-auto opacity-70"
-                          dangerouslySetInnerHTML={markdownify(
-                            item.description,
-                          )}
-                        />
-                      )}
-                    </div>
-
-                    {index === 0 && item.images ? (
-                      <div className="mb-20 lg:mb-36 flex items-center justify-center gap-10">
-                        {item.images.map((item, i) => (
-                          <ImageFallback
-                            key={i}
-                            className={`${i === 1 ? "w-28 md:w-44" : "w-20 md:w-32"}`}
-                            src={item}
-                            alt={`user image`}
-                            width={i === 1 ? 176 : 128}
-                            height={i === 1 ? 176 : 128}
+                    {/* CARD */}
+                    <div className="flex h-full flex-col rounded-lg border border-border bg-dark p-5">
+                      
+                      {/* ===== TITLE + DESC ===== */}
+                      <div className="[&_p]:m-0">
+                        {item.title && (
+                          <h3
+                            className="mb-2 text-[15px] md:text-[16px] font-medium leading-snug tracking-tight text-white"
+                            dangerouslySetInnerHTML={markdownify(item.title)}
                           />
-                        ))}
-                      </div>
-                    ) : index === 1 && item.images ? (
-                      <div className="relative lg:-mb-8 w-full max-w-[420px] mt-40 mx-auto">
-                        {item.images.slice(0, 2).map((item, i) => (
-                          <ImageFallback
-                            key={i}
-                            className={`absolute inset-x-0 mx-auto block ${i === 0 ? "bottom-[10%] z-0 w-[80%]" : index === 1 ? "bottom-[-5%] z-10 w-[90%]" : "w-full"}`}
-                            src={item}
-                            alt={`feature`}
-                            width={i === 0 ? 320 : 400}
-                            height={i === 0 ? 320 : 400}
+                        )}
+                        {item.description && (
+                          <p
+                            className="text-sm leading-relaxed opacity-70"
+                            dangerouslySetInnerHTML={markdownify(
+                              item.description,
+                            )}
                           />
-                        ))}
-                        <ImageFallback
-                          className={`relative z-30 w-full`}
-                          src={item.images[2]}
-                          alt={`user image`}
-                          width={400}
-                          height={400}
-                        />
+                        )}
                       </div>
-                    ) : (
-                      index === 2 && (
-                        <div className="relative w-full max-w-[420px] mt-10 mx-auto">
-                          {item.tools_bg && (
-                            <ImageFallback
-                              className={`relative z-0 w-full pl-4`}
-                              src={item.tools_bg}
-                              alt={`user image`}
-                              width={400}
-                              height={400}
-                            />
-                          )}
-                          {item.tools &&
-                            item.tools.map((item, i: number) => {
-                              const classes = [
-                                "left-0 top-7 w-[calc(1vw_+_35px)]",
-                                "left-[33%] top-7 w-[calc(1vw_+_35px)]",
-                                "right-[20%] top-3 opacity-70 w-[calc(1vw_+_40px)]",
-                                "left-[22%] top-[40%] w-[calc(1vw_+_35px)]",
-                                "left-[46%] top-[40%] w-[calc(1vw_+_35px)] opacity-50",
-                                "left-[76%] top-[46%] w-[calc(1vw_+_35px)]",
-                                "left-[22%] top-[78%] w-[calc(1vw_+_35px)]",
-                                "left-[56%] top-[70%] w-[calc(1vw_+_35px)]",
-                              ];
 
-                              return (
-                                <div
+                      {/* ===== IMAGES ===== */}
+                      <div className="mt-12">
+                        {/* ---------- CARD 1 : POS ---------- */}
+                        {index === 0 && item.images && (
+                          <div className="relative overflow-hidden">
+                            <div className="marquee flex h-[52px] w-max items-center gap-8 whitespace-nowrap">
+                              {[...item.images, ...item.images].map((img, i) => (
+                                <ImageFallback
                                   key={i}
-                                  className={`absolute z-10 ${classes[i] || ""}`}
-                                >
-                                  <ImageFallback
-                                    className={`w-full h-full`}
-                                    src={item}
-                                    alt={`user image`}
-                                    width={64}
-                                    height={64}
-                                  />
-                                </div>
-                              );
-                            })}
-                        </div>
-                      )
-                    )}
+                                  src={img}
+                                  alt="pos"
+                                  width={140}
+                                  height={60}
+                                  className="h-[34px] w-auto object-contain opacity-90"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* ---------- CARD 2 : ZOMATO / SWIGGY ---------- */}
+                        {index === 1 && item.images && (
+                          <div className="flex items-center justify-center gap-8">
+                            {item.images.map((img, i) => (
+                              <div
+                                key={i}
+                                className="fade-slide-down flex h-[84px] w-[166px] items-center justify-center"
+                                style={{
+                                  animationDelay: `${i * 150}ms`,
+                                }}
+                              >
+                                <ImageFallback
+                                  src={img}
+                                  alt="platform"
+                                  width={166}
+                                  height={84}
+                                  className="h-full w-full object-contain"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* ---------- CARD 3 : TOOLS ---------- */}
+                        {index === 2 && (
+                          <div className="relative mx-auto w-full max-w-[260px]">
+                            {item.tools_bg && (
+                              <ImageFallback
+                                src={item.tools_bg}
+                                alt="tools bg"
+                                width={260}
+                                height={260}
+                                className="w-full"
+                              />
+                            )}
+
+                            {item.tools &&
+                              item.tools.map((tool, i) => {
+                                const pos = [
+                                  "left-0 top-5",
+                                  "left-[30%] top-5",
+                                  "right-[18%] top-2",
+                                  "left-[20%] top-[36%]",
+                                  "left-[44%] top-[36%]",
+                                  "left-[72%] top-[42%]",
+                                  "left-[20%] top-[72%]",
+                                  "left-[54%] top-[66%]",
+                                ];
+
+                                return (
+                                  <div
+                                    key={i}
+                                    className={`absolute z-10 ${pos[i] || ""}`}
+                                  >
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 shadow-lg">
+                                      <div className="h-7 w-7 overflow-hidden rounded-full bg-black">
+                                        <ImageFallback
+                                          src={tool}
+                                          alt="tool"
+                                          width={28}
+                                          height={28}
+                                          className="h-full w-full object-contain"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
