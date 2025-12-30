@@ -8,7 +8,7 @@ const FeaturesCardLayout = ({
 }: {
   features?: FeatureCardLayout["frontmatter"];
 }) => {
-  let { title, description, list, button }: FeatureCardLayout["frontmatter"] =
+  let { title, description, list,button}: FeatureCardLayout["frontmatter"] =
     getListPage("sections/features-card-layout.md").frontmatter;
 
   if (features) {

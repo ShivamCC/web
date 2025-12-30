@@ -65,7 +65,7 @@ const HomeBanner = () => {
             )}
           </div>
 
-          {/* ================= IMAGE ================= */}
+          {/* ================= DIRECTIONAL TILT IMAGE ================= */}
           {image && (
             <div className="col-12 pt-8 lg:pt-16">
               <div className="mx-auto max-w-[900px]">
